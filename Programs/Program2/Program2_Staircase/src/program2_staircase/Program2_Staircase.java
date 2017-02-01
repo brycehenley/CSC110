@@ -29,7 +29,7 @@ package program2_staircase;
 
 public class Program2_Staircase {
     
-    public static final int STAIRS = 5;
+    public static final int STAIRS = 7;
     
     public static void main(String[] args) {
         for (int stair = 1; stair <= STAIRS; stair++) {

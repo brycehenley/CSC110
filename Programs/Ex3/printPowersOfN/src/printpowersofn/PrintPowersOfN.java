@@ -24,6 +24,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * This program accepts a base and an exponent as arguments and prints each power of the base from base0 (1) up to the maximum power
+ * 
  */
 package printpowersofn;
 
@@ -34,19 +37,29 @@ public class PrintPowersOfN {
     public static void main(String[] args) {
         
         Scanner cli = new Scanner(System.in);
-        System.out.println("enter base:");
+        
+        System.out.println("This program accepts a base and an exponent as arguments and prints each power of the base from base0 (1) up to the maximum power");
+        System.out.println("Enter base:");
         int b = cli.nextInt();
-        System.out.println("enter exponent:");
+        System.out.println("Enter exponent:");
         int p = cli.nextInt();
 
         
-        printPowersOfN(n,p);
+        printPowersOfN(b,p);
     }
     
     public static void printPowersOfN(int b, int p) {
-        for(int i = 0; i < p; i++){
-            
+        
+        int n = b;
+        
+        System.out.print(1 + " ");
+        
+        for(int i = 1; i<p; i++){
+            n = b * n;
+            System.out.print(n + " ");
         }
+        //ignore, makes it easier to read in netbeans build
+        System.out.println();
     }
     
 }

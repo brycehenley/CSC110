@@ -1,0 +1,26 @@
+Program3.1b flow
+procedure for starting a carborated motorcycle in the cold
+
+pull front brake (pull)
+  \/
+mount bike (mount)
+  \/
+flip up kickstand (up)
+  \/
+turn carb key/ fuel cutoff switch> (off, on, or reserve)
+  \/
+insert key (insert)
+  \/
+turn key> (lock, off, on)
+  \/
+pull choke> (0%, 50%, 100%)
+  \/
+flip engine kill switch> (on, off)
+  \/
+pull clutch lever> (100%, 50%, 0%)
+  \/
+press the engine start button (press)
+  \/
+Engine starts
+
+"It is recomended that you give time for the engine to warm to normal operating temperature before strressing it"

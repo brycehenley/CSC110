@@ -1,2 +1,5 @@
 # CSC110
-csc projects
+Java Computer Science projects
+All code is licenced under MIT opensource licence, check source for 
+details
+

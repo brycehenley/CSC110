@@ -17,7 +17,7 @@ pull choke> (0%, 50%, 100%)
   \/
 flip engine kill switch> (on, off)
   \/
-pull clutch lever> (100%, 50%, 0%)
+pull clutch lever> (y/n)
   \/
 press the engine start button (y/n)
   \/

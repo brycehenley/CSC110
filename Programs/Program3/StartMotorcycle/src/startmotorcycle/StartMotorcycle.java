@@ -56,7 +56,6 @@ public class StartMotorcycle {
         brakeState(cli);
         //System.out.println("" + brakeState);
         mountState(cli);
-        kickstandState(cli);
         carbkeyState(cli);
         chokeState(cli);
         killswitchState(cli);
@@ -65,7 +64,7 @@ public class StartMotorcycle {
 
     }
     public static void printResult(){
-        if(killswitchState == false || carbkeyState == 0 || enginestartState == false || keyinsertState == false || chokeState == 0){
+        if(killswitchState == false || enginestartState == false || keyinsertState == false || chokeState == 0){
             engineState = 0;
         }else if(chokeState == 1){
             engineState = 1;
@@ -78,16 +77,31 @@ public class StartMotorcycle {
             System.out.print("The engine fails to start");
         }else if(engineState == 1){
             System.out.print("The engine slowly putters to life");
+            
+            if (carbkeyState == 0){
+                System.out.print(" but then dies after a minute of running");
+            }else{
+            }
         }else{
             System.out.print("The engine roars to life");
+            
+            if (carbkeyState == 0){
+                System.out.print(" but then dies after a minute of running");
+            }else{
+            }
         }
         //mounted
         if(mountState == 0){
-            System.out.print(" as you stand beside the bike" + "\n");
+            System.out.print(" while you stand beside the bike" + "\n");
         }else if(mountState == 1){
-            System.out.print(" as you mount the bike" + "\n");
+            System.out.print(" while you mount the bike" + "\n");
         }else{
-            System.out.print(" as you precariously mount the bike" + "\n");
+            System.out.print(" while you precariously mount the bike" + "\n");
+        }
+        
+        if(kickstandState == false){
+            System.out.println("Caution: your kickstand is still down");
+        }else{
         }
         
         if(engineState == 1 || engineState == 2){
@@ -142,6 +156,18 @@ public class StartMotorcycle {
         char cmount = Character.toLowerCase(mount.charAt(0));
         
         if(cmount == 'y'){
+            
+            System.out.println("flip up kickstand? (y/n)");
+            String kickstand = cli.next();
+            char ckickstand = Character.toLowerCase(kickstand.charAt(0));
+
+            if (ckickstand == 'y'){
+                kickstandState = true;
+            }else if (ckickstand == 'n'){
+                kickstandState = false;
+            }else{
+            }
+            
             if(brakeState == true){
                 mountState = 1;
             }else{
@@ -153,20 +179,6 @@ public class StartMotorcycle {
             mountState(cli);
         }
         return mountState;
-    }
-    public static boolean kickstandState(Scanner cli){
-        System.out.println("flip up kickstand? (y/n)");
-        String kickstand = cli.next();
-        char ckickstand = Character.toLowerCase(kickstand.charAt(0));
-        
-        if (ckickstand == 'y'){
-            kickstandState = true;
-        }else if (ckickstand == 'n'){
-            kickstandState = false;
-        }else{
-            kickstandState(cli);
-        }
-        return kickstandState;
     }
     public static int carbkeyState(Scanner cli){
         

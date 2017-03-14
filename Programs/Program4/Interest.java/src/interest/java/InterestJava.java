@@ -24,43 +24,159 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * INTREST PROGRAM
+ * This program is designed to calculate compounding intrest based on use input
+ *
  */
 package interest.java;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class InterestJava {
     
     //init variables
-    public static double balance_old;
-    public static double balance_current;
+    public static double balanceOld;
+    public static double balanceCur;
     public static double intrest;
     public static double charge;
     public static double threshold;
-    
-    
-    
-    
+    public static double initBalance;
+    public static double aIRate;
+    public static int period;
+    public static int periodIn;
+    public static boolean option;
+    public static int run = 0;
             
     public static void main(String[] args) {
         Scanner cli = new Scanner(System.in);
         
-        System.out.println("enter anual processing charge:");
-        charge = cli.nextDouble();
-        System.out.println("enter threshold:");
-        charge = cli.nextDouble();
+        charge(cli);
+        threshold(cli);
+        initBalance(cli);
+        aIRate(cli);
+        period(cli);
+        option(cli);
         
-        optionA(cli);
+        //run selected option
+        if (option){
+            optionA(cli);
+        }else{
+            optionB(cli);
+        }
+    }
+    public static int run(Scanner cli){
+        charge(cli);
+        threshold(cli);
+        initBalance(cli);
+        aIRate(cli);
+        period(cli);
+        option(cli);
+        
+        run++;
+        
+        //run selected option
+        if (option){
+            optionA(cli);
+        }else{
+            optionB(cli);
+        }
+        
+        return run;
+    }
+    public static boolean option(Scanner cli){
+        System.out.println("Option A, specify the length of the investment (in the same units as specified for the compounding \n" +
+            "period), and have the program compute the final account balance.");
+        System.out.println("");
+        System.out.println("Option B, specify a goal for the account balance, and have the program calculate how long (in the same \n" +
+            "units as the compounding period) it will take to achieve that amount.");
+        System.out.println("Select option:");
+        
+        String op2;
+        op2 = cli.next();
+        
+        if (op2.toLowerCase().equals("a")){
+            return option = true;
+        }else if (op2.toLowerCase().equals("b")){
+            return option  = false;
+        }else{
+            System.out.println("You entered an incorrect value, Please try again:");
+            option(cli);
+        }
+        return option;
     }
     public static void optionA(Scanner cli){
+        //calc
+        if (period == 1){
+            System.out.println("enter number of days");
+        }else if (period == 2){
+            System.out.println("enter number of months");
+        }else{
+            System.out.println("enter nubmer of years");
+        }
+        periodIn = cli.nextInt();
         
-        System.out.println("enter initial balance");
+        balanceOld = initBalance;
         
-        balance_current = cli.nextDouble();
+        for (int i = periodIn; i > 0; i--){
+            double intrestcalc = (balanceOld*aIRate);
+            balanceCur = balanceOld + intrestcalc;
+        }
+        //display result
+        System.out.println("" + balanceCur + "$");
+        System.out.println("");
+        
+        //prompt user
+        prompt(cli);
+        System.out.println("enter \"table\" to display results");
+        System.out.println("enter \"q\" to quit");
+        System.out.println("enter \"run\" to run the program again");
+        
         
         
     }
     public static void optionB(Scanner cli){
+        
+    }
+    public static int period(Scanner cli){
+        System.out.println("Please enter compounding intrest period (day,month,year):");
+            String op;
+            op = cli.next();
+            
+            if (op.toLowerCase().equals("day")){
+                return period = 1;
+            }else if (op.toLowerCase().equals("month")){
+                return period = 2;
+            }else if (op.toLowerCase().equals("year")){
+                return period = 3;
+            }else{
+                System.out.println("You entered an incorrect value, Please try again:");
+                period(cli);
+                
+            } 
+        return period;
+    }
+    public static double charge(Scanner cli){
+        System.out.println("Please enter anual processing charge:");
+        charge = cli.nextDouble();
+        return charge;
+    }
+    public static double threshold(Scanner cli){
+        System.out.println("Please enter threshold:");
+        threshold = cli.nextDouble();
+        return threshold;
+    }
+    public static double initBalance(Scanner cli){
+        System.out.println("Please enter inital ballance:");
+        initBalance = cli.nextDouble();
+        return initBalance;
+    }
+    public static double aIRate(Scanner cli){
+        System.out.println("Please enter anual intrest rate:");
+        aIRate = cli.nextDouble();
+        return aIRate;
+    }
+    public static void promt(){
         
     }
 }

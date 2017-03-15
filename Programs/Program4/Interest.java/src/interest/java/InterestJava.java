@@ -44,26 +44,17 @@ public class InterestJava {
     public static double initBalance;
     public static double aIRate;
     public static int period;
+    public static String readperiod;
     public static int periodIn;
     public static boolean option;
-    public static int run = 0;
+    public static int run = 1;
+    public static int prompt;
+    public static double intrestcalc;
             
     public static void main(String[] args) {
         Scanner cli = new Scanner(System.in);
         
-        charge(cli);
-        threshold(cli);
-        initBalance(cli);
-        aIRate(cli);
-        period(cli);
-        option(cli);
-        
-        //run selected option
-        if (option){
-            optionA(cli);
-        }else{
-            optionB(cli);
-        }
+        run(cli);
     }
     public static int run(Scanner cli){
         charge(cli);
@@ -109,28 +100,50 @@ public class InterestJava {
         //calc
         if (period == 1){
             System.out.println("enter number of days");
+            readperiod = "days ";
         }else if (period == 2){
             System.out.println("enter number of months");
+            readperiod = "months ";
         }else{
             System.out.println("enter nubmer of years");
+            readperiod = "years ";
         }
         periodIn = cli.nextInt();
         
         balanceOld = initBalance;
         
-        for (int i = periodIn; i > 0; i--){
-            double intrestcalc = (balanceOld*aIRate);
+        for (int i = 1; i <= periodIn; i++){
+            intrestcalc = (balanceOld*aIRate);
             balanceCur = balanceOld + intrestcalc;
+            balanceOld = balanceCur;
         }
         //display result
-        System.out.println("" + balanceCur + "$");
+        System.out.printf("$%.2f %n",balanceCur);
         System.out.println("");
         
         //prompt user
         prompt(cli);
-        System.out.println("enter \"table\" to display results");
-        System.out.println("enter \"q\" to quit");
-        System.out.println("enter \"run\" to run the program again");
+        
+        if(prompt == 1){
+            run(cli);
+        }else if(prompt == 2){
+            intrestcalc = 0.0;
+            balanceOld = initBalance;
+          
+            System.out.printf("%s %10s  %n", readperiod, "Balance");
+            for (int i = 1; i <= periodIn; i++){
+            intrestcalc = (balanceOld*aIRate);
+            balanceCur = balanceOld + intrestcalc;
+            balanceOld = balanceCur;
+            
+//            System.out.printf("%15d + " " $%10.2f \n", i, balanceCur);
+            System.out.printf("%100.2f %n", balanceCur);
+            }
+        }else{
+            
+        }
+        
+        
         
         
         
@@ -176,7 +189,25 @@ public class InterestJava {
         aIRate = cli.nextDouble();
         return aIRate;
     }
-    public static void promt(){
+    public static int prompt(Scanner cli){
+        System.out.println("enter \"table\" to display results");
+        System.out.println("enter \"q\" to quit");
+        System.out.println("enter \"run\" to run the program again");
         
+        String promptinput;
+        promptinput = cli.next();
+        
+        if(promptinput.toLowerCase().equals("table")){
+            prompt = 2;
+        }else if(promptinput.toLowerCase().equals("q")){
+            prompt = 3;
+        }else if(promptinput.toLowerCase().equals("run")){
+            prompt = 1;
+        }else{
+            System.out.println("invalid input:");
+            prompt(cli);
+        }
+        
+        return prompt;
     }
 }

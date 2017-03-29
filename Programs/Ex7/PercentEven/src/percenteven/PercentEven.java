@@ -28,9 +28,32 @@
 package percenteven;
 
 public class PercentEven {
-
+    
+    //param
+    public static int[] ary = {2, 2, 3};
+    public static int percentEven;
+    
     public static void main(String[] args) {
         
+        percentEven(ary);
+        System.out.println(percentEven + "%");
+    }
+    public static int percentEven(int[] ary){
+        
+        int total = ary.length;
+        double even = 0;
+        
+        for (int i = 0; i <= ary.length-1; i++){
+            if (ary[i]%2 == 0){
+                even++;
+            }else{
+                
+            }
+        }
+        
+        percentEven = (int)((even/total)*100);
+        
+        return percentEven;
     }
     
 }

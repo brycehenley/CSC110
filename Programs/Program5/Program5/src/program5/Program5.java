@@ -31,14 +31,12 @@ import java.lang.Math;
 
 public class Program5 {
     
-    public static final double gravity = 32.172;
-    public static final double fpm = 5280;
-    public static final double sph = 3600;
+    public static final double GRAVITY = 32.172;
+    public static final double FPM = 5280;
+    public static final double SPH = 3600;
             
     public static double[] user_input_point = {0.0,0.0};
     public static int run;
-    public static double[] point1 = {0.0,0.0};
-    public static double[] point2 = {0.0,0.0};
     public static double angle;
     public static double vel;
     public static double distance;
@@ -70,7 +68,6 @@ public class Program5 {
         return user_input_point;
     }
     public static double user_input_angle(Scanner cli){
-        double[] point = {0.0,0.0};
         
         System.out.println("Enter angle of elevation(deg):");
         angle = cli.nextDouble();
@@ -128,22 +125,31 @@ public class Program5 {
         customer_service(cli);
     }
     public static double engineering_1(Scanner cli){
-        user_input_point(cli);
-        point1 = user_input_point;
-        user_input_point(cli);
-        point2 = user_input_point;
-        double dis = Math.sqrt(((point1[0] - point2[0])*(point1[0] - point2[0]))+(((point1[1] - point2[1])*(point1[1] - point2[1]))));
         
-        engineering_1 = dis;
+        user_input_point(cli);
+        double[] point1 = user_input_point.clone();
+
+        user_input_point(cli);
+        double[] point2 = user_input_point.clone();
+        
+        double x1 = point1[0];
+        double x2 = point2[0];
+        double y1 = point1[1];
+        double y2 = point2[1];
+
+        double calc = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        
+        engineering_1 = calc;
         //test
         System.out.println(engineering_1);
         return engineering_1;
     }
     public static double engineering_2(Scanner cli){
         user_input_point(cli);
-        point1 = user_input_point;
+        double[] point1 = user_input_point.clone();
+        
         user_input_point(cli);
-        point2 = user_input_point;
+        double[] point2 = user_input_point.clone();
         double dx = (point1[0] - point2[0]);
         double dy = (point1[1] - point2[1]);
         double ang = 0.0;
@@ -168,8 +174,8 @@ public class Program5 {
         user_input_vel(cli);
         
         double angrad = angle * (Math.PI/180);
-        double vi = vel *(fpm/sph);
-        horizon_dis = (vi*vi) * Math.sin(2*angrad) / gravity;
+        double vi = vel *(FPM/SPH);
+        horizon_dis = (vi*vi) * Math.sin(2*angrad) / GRAVITY;
         
         //test
         System.out.println(horizon_dis);

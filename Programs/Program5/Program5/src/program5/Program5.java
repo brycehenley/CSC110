@@ -35,6 +35,8 @@ public class Program5 {
     public static final double SPH = 3600;
             
     public static double[] user_input_point = {0.0,0.0};
+    public static double[] point1;
+    public static double[] point2;
     public static int run;
     public static double angle;
     public static double vel;
@@ -42,11 +44,13 @@ public class Program5 {
     public static double horizon_dis;
     
     public static double engineering_1;
-     public static double engineering_2;
-      public static double engineering_3;
-       public static double[] engineering_4 = {0.0, 0.0};
+    public static double engineering_2;
+    public static double engineering_3;
+    public static double[] engineering_4 = {0.0, 0.0};
        
-       
+    public static int drivingForce;
+    public static double speed;
+    
     public static void main(String[] args) {
         //use printf for outputs
         
@@ -55,7 +59,6 @@ public class Program5 {
     }
     public static void menu(Scanner cli){
         System.out.println("Enter number to select option.");
-        
         System.out.println("(1) Basic Calculations");
         System.out.println("(2) Driving Range");
         System.out.println("(3) Swamp Golf");
@@ -65,7 +68,7 @@ public class Program5 {
         int input = cli.nextInt();
         
         if(input == 1){
-            bcalc(cli);
+            customer_service(cli);
         }else if(input == 2){
             drivingRange(cli);
         }else if(input == 3){
@@ -99,26 +102,96 @@ public class Program5 {
             customer_service(cli);
         }
     }
+    
+    
+    
+    ///////////////5.2 METHODS//////////////////////////////
+    public static void drivingRange(Scanner cli){
+        System.out.println("Please enter club type by number");
+        System.out.println("(3) 3-iron");
+        System.out.println("(5) 5-iron");
+        System.out.println("(7) 7-iron");
+        System.out.println("(9) 9-iron");
+        
+        int iron = cli.nextInt();
+        
+        if(iron == 3){
+            angle = 20.0;
+        }else if(iron == 5){
+            angle = 40.0;
+        }else if(iron == 7){
+            angle = 60.0;
+        }else if(iron == 9){
+            angle = 80.0;
+        }else{
+            drivingRange(cli);
+        }
+        
+        drivingForce(cli);
+        drivingRangeEngineer(cli);
+        
+        
+        
+    }
+    public static int drivingForce(Scanner cli){
+        System.out.println("(0-100)Please enter driving force percent");
+        drivingForce = cli.nextInt();
+        if(drivingForce >= 0 && drivingForce <= 100){
+            return drivingForce;
+        }else{
+            drivingForce(cli);
+        }
+        return drivingForce;
+    }
+    public static void drivingRangeEngineer(Scanner cli){
+        speed = (drivingForce * 0.01)*(150.0);
+    }
+    public static void swampGolf(Scanner cli){
+        
+    }
+    public static void swampGolfEngineer(Scanner cli){
+        
+    }
+    public static void game(Scanner cli){
+        //sky hoops driver
+    }
+    public static void gameEngineer(Scanner cli){
+        
+    }
+    /////////////////////////////////////////////////////////
     public static void engineer(Scanner cli, int run){
         if (run == 1){
-            engineering_1(cli);
-        }else if(run == 2){
-            engineering_2(cli);
-        }else if(run == 3){
-            engineering_3(cli);
-        }else{
-            engineering_4(cli);
-        }
-        //restart after calc
-        customer_service(cli);
-    }
-    public static double engineering_1(Scanner cli){
-        
-        user_input_point(cli);
-        double[] point1 = user_input_point.clone();
+            user_input_point(cli);
+            point1 = user_input_point.clone();
 
-        user_input_point(cli);
-        double[] point2 = user_input_point.clone();
+            user_input_point(cli);
+            point2 = user_input_point.clone();
+            engineering_1(cli, point1, point2);
+            System.out.printf("Distance: "+"%.2f"+"\n", engineering_1);
+        }else if(run == 2){
+            user_input_point(cli);
+            point1 = user_input_point.clone();
+            
+            user_input_point(cli);
+            point2 = user_input_point.clone();
+            engineering_2(cli);
+            System.out.printf("Angle: "+"%.2f"+"deg"+"\n", engineering_2);
+        }else if(run == 3){
+            user_input_angle(cli);
+            user_input_vel(cli);
+            engineering_3(cli);
+            System.out.printf("Distance: "+"%.2f"+"\n", engineering_3);
+        }else{
+            user_input_point(cli);
+            user_input_distance(cli);
+            user_input_angle(cli);
+            engineering_4(cli);
+            System.out.printf("Point: "+"(%.2f,"+" %.2f)"+"\n", engineering_4[0], engineering_4[1]);
+        }
+        //restart after calc //edited for 5.2
+        menu(cli);
+    }
+    public static double engineering_1(Scanner cli, double[] point1, double[] point2){
         
         double x1 = point1[0];
         double x2 = point2[0];
@@ -129,15 +202,10 @@ public class Program5 {
         
         engineering_1 = calc;
         //test
-        System.out.println(engineering_1);
+        //System.out.println(engineering_1);
         return engineering_1;
     }
     public static double engineering_2(Scanner cli){
-        user_input_point(cli);
-        double[] point1 = user_input_point.clone();
-        
-        user_input_point(cli);
-        double[] point2 = user_input_point.clone();
         double dx = (point1[0] - point2[0]);
         double dy = (point1[1] - point2[1]);
         double ang = 0.0;
@@ -154,26 +222,20 @@ public class Program5 {
         
         engineering_2 = ang;
         //test
-        System.out.println(engineering_2);
+        //System.out.println(engineering_2);
         return engineering_2;
     }
-    public static double engineering_3(Scanner cli){
-        user_input_angle(cli);
-        user_input_vel(cli);
-        
+    public static double engineering_3(Scanner cli){        
         double angrad = angle * (Math.PI/180);
         double vi = vel *(FPM/SPH);
         horizon_dis = (vi*vi) * Math.sin(2*angrad) / GRAVITY;
         
         //test
-        System.out.println(horizon_dis);
+        //System.out.println(horizon_dis);
         return horizon_dis;
         
     }
     public static double[] engineering_4(Scanner cli){
-        user_input_point(cli);
-        user_input_distance(cli);
-        user_input_angle(cli);
         
         double angrad = angle * (Math.PI/180);
         double dx = distance * Math.cos(angrad);
@@ -183,7 +245,7 @@ public class Program5 {
         engineering_4[1] = user_input_point[1] + dy;
         
         //test
-        System.out.println("" + engineering_4[0] + " " + engineering_4[1]);
+        //System.out.println("" + engineering_4[0] + " " + engineering_4[1]);
         return engineering_4;
     }
     public static void options(){

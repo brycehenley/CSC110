@@ -50,6 +50,8 @@ public class Program5 {
        
     public static int drivingForce;
     public static double speed;
+    public static int random;
+    public static int setDifficulty;
     
     public static void main(String[] args) {
         //use printf for outputs
@@ -72,7 +74,7 @@ public class Program5 {
         }else if(input == 2){
             drivingRange(cli);
         }else if(input == 3){
-            swampGolf(cli);
+            swampGolfInit(cli);
         }else if(input == 4){
             game(cli);
         }else if(input == 5){
@@ -145,8 +147,22 @@ public class Program5 {
     }
     public static void drivingRangeEngineer(Scanner cli){
         speed = (drivingForce * 0.01)*(150.0);
+        vel = speed;
+        engineering_3(cli, angle, vel);
+        System.out.printf("You hit the ball "+"%.2f"+" feet"+"\n", horizon_dis);
+        //restart
+        menu(cli);
+    }
+    public static void swampGolfInit(Scanner cli){
+        System.out.println("Welcome to Swamp Golf!");
+        System.out.println("player1: Tiger Woods");
+        System.out.println("player2: Phil Mickelson");
+        
+        //initialize game
+        setDifficulty(cli);
     }
     public static void swampGolf(Scanner cli){
+        //input method for Swamp Golf
         
     }
     public static void swampGolfEngineer(Scanner cli){
@@ -157,6 +173,15 @@ public class Program5 {
     }
     public static void gameEngineer(Scanner cli){
         
+    }
+    public static int setDifficulty(Scanner cli){
+        System.out.println("please enter difficulty number");
+        System.out.println("(1)Low: hole radius 10ft");
+        System.out.println("(2)Medium: hole radius 5ft");
+        System.out.println("(1)High: hole radius 2ft");
+        setDifficulty = cli.nextInt();
+        if(setDifficulty == 1)
+        return setDifficulty;
     }
     /////////////////////////////////////////////////////////
     public static void engineer(Scanner cli, int run){
@@ -174,18 +199,18 @@ public class Program5 {
             
             user_input_point(cli);
             point2 = user_input_point.clone();
-            engineering_2(cli);
+            engineering_2(cli, point1, point2);
             System.out.printf("Angle: "+"%.2f"+"deg"+"\n", engineering_2);
         }else if(run == 3){
             user_input_angle(cli);
             user_input_vel(cli);
-            engineering_3(cli);
-            System.out.printf("Distance: "+"%.2f"+"\n", engineering_3);
+            engineering_3(cli, angle, vel);
+            System.out.printf("Distance: "+"%.2f"+"\n", horizon_dis);
         }else{
             user_input_point(cli);
             user_input_distance(cli);
             user_input_angle(cli);
-            engineering_4(cli);
+            engineering_4(cli, point1, point2);
             System.out.printf("Point: "+"(%.2f,"+" %.2f)"+"\n", engineering_4[0], engineering_4[1]);
         }
         //restart after calc //edited for 5.2
@@ -205,7 +230,7 @@ public class Program5 {
         //System.out.println(engineering_1);
         return engineering_1;
     }
-    public static double engineering_2(Scanner cli){
+    public static double engineering_2(Scanner cli, double[] point1, double[] point2){
         double dx = (point1[0] - point2[0]);
         double dy = (point1[1] - point2[1]);
         double ang = 0.0;
@@ -225,17 +250,17 @@ public class Program5 {
         //System.out.println(engineering_2);
         return engineering_2;
     }
-    public static double engineering_3(Scanner cli){        
+    public static double engineering_3(Scanner cli, double angle, double vel){        
         double angrad = angle * (Math.PI/180);
         double vi = vel *(FPM/SPH);
         horizon_dis = (vi*vi) * Math.sin(2*angrad) / GRAVITY;
         
         //test
-        //System.out.println(horizon_dis);
+        System.out.println(horizon_dis);
         return horizon_dis;
         
     }
-    public static double[] engineering_4(Scanner cli){
+    public static double[] engineering_4(Scanner cli, double[] point1, double[] point2){
         
         double angrad = angle * (Math.PI/180);
         double dx = distance * Math.cos(angrad);

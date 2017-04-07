@@ -52,9 +52,24 @@ public class Program5 {
     public static double speed;
     public static int random;
     public static int setDifficulty;
+    public static int rad;
+    public static int charge1 = 3;
+    public static int charge2 = 3;
+    public static int player1_score = 0;
+    public static int player2_score = 0;
+    public static int hole = 1;
+    public static double holedis;
+    public static double hole1;
+    public static double hole2;
+    public static double hole3;
+    public static double hole4;
+    public static double hole5;
+    public static double current1 = 0;
+    public static double current2 = 0;
+    public static int stroke1 = 0;
+    public static int stroke2 = 0;
     
     public static void main(String[] args) {
-        //use printf for outputs
         
         Scanner cli = new Scanner(System.in);
         menu(cli);
@@ -73,6 +88,8 @@ public class Program5 {
             customer_service(cli);
         }else if(input == 2){
             drivingRange(cli);
+            //restart
+            menu(cli);
         }else if(input == 3){
             swampGolfInit(cli);
         }else if(input == 4){
@@ -150,8 +167,6 @@ public class Program5 {
         vel = speed;
         engineering_3(cli, angle, vel);
         System.out.printf("You hit the ball "+"%.2f"+" feet"+"\n", horizon_dis);
-        //restart
-        menu(cli);
     }
     public static void swampGolfInit(Scanner cli){
         System.out.println("Welcome to Swamp Golf!");
@@ -160,16 +175,164 @@ public class Program5 {
         
         //initialize game
         setDifficulty(cli);
+        
+        hole = 1;
+        
+        //generate random distances
+        hole1 = Math.random()*5000+1;
+        hole2 = Math.random()*5000+1;
+        hole3 = Math.random()*5000+1;
+        hole4 = Math.random()*5000+1;
+        hole5 = Math.random()*5000+1;
+        
+        //System.out.println(hole1 + " " + hole3);
+        
+        swampGolf(cli);
     }
     public static void swampGolf(Scanner cli){
         //input method for Swamp Golf
+        if(hole == 1){
+            holedis = hole1;
+        }else if(hole == 2){
+            holedis = hole2;
+        }else if(hole == 3){
+            holedis = hole3;
+        }else if(hole == 4){
+            holedis = hole4;
+        }else if(hole == 5){
+            holedis = hole5;
+        }else{
+            
+        }
         
+        if(hole < 6){
+            System.out.println("Player1:");
+            System.out.println("(1) Use the compass/range-finder to find the angle and distance to the hole");
+            System.out.println("(2) Hit the ball,");
+            System.out.println("(3) Quit the hole");
+            int player1_input = cli.nextInt();
+
+            if(player1_input == 1){
+                if(charge1 > 0){
+                    
+                        System.out.println(holedis - current1);
+
+                    charge1--;
+                }else{
+                    System.out.println("battery out of charge...");
+                    
+                }
+            }else if(player1_input == 2){
+                drivingRange(cli);
+                stroke1++;
+                current1 = current1 + horizon_dis;
+                if((current1-holedis)<rad){
+                    player1_score++;
+                    hole++;
+                    
+                }else{
+                     
+                }
+                
+            }else{
+                hole++;
+                current1 = 0;
+                current2 = 0;
+                swampGolf(cli);
+            }
+            //player2
+            System.out.println("Player2:");
+            System.out.println("(1) Use the compass/range-finder to find the angle and distance to the hole");
+            System.out.println("(2) Hit the ball,");
+            System.out.println("(3) Quit the hole");
+            int player2_input = cli.nextInt();
+
+            if(player2_input == 1){
+                if(charge2 > 0){
+                    
+                        System.out.println(holedis - current1);
+
+                    charge2--;
+                }else{
+                    System.out.println("battery out of charge...");
+                    
+                }
+            }else if(player2_input == 2){
+                drivingRange(cli);
+                stroke2++;
+                current2 = current2 + horizon_dis;
+                if((current2-holedis)<rad){
+                    player2_score++;
+                    hole++;
+                    
+                }else{
+                     
+                }
+                
+            }else{
+                hole++;
+                current1 = 0;
+                current2 = 0;
+                swampGolf(cli);
+            }
+            //reset
+            swampGolf(cli);
+            
+        }else{
+            System.out.println("Player 1 score: " + player1_score);
+            System.out.println("Player 2 score: " + player2_score + "\n");
+            if(player1_score > player2_score){
+                System.out.println("Player 1 WINS!");
+            }else if(player2_score > player1_score){
+                System.out.println("Player 2 WINS!");
+            }else{
+                
+            }
+        }
+        
+        System.out.println("Player2:");
+        System.out.println("(1) Use the compass/range-finder to find the angle and distance to the hole");
+        System.out.println("(2) Hit the ball,");
+        System.out.println("(3) Quit the hole");
+        int player2_input = cli.nextInt();
+            
+        if(player2_input == 1){
+            if(charge2 > 0){
+                    if(hole == 1){
+                        System.out.println(hole1 - current2);
+                    }
+                    if(hole == 2){
+                        System.out.println(hole2 - current2);
+                    }
+                    if(hole == 3){
+                        System.out.println(hole3 - current2);
+                    }
+                    if(hole == 4){
+                        System.out.println(hole4 - current2);
+                    }
+                    if(hole == 5){
+                        System.out.println(hole5 - current2);
+                    }
+                    charge2--;
+                    swampGolf(cli);
+                }else{
+                    System.out.println("battery out of charge...");
+                    swampGolf(cli);
+                }
+        }else if(player2_input == 2){
+            drivingRange(cli);
+            current2 = current2 + horizon_dis;
+            swampGolf(cli);
+        }else{
+            hole++;
+            swampGolf(cli);
+        }
     }
     public static void swampGolfEngineer(Scanner cli){
         
     }
     public static void game(Scanner cli){
-        //sky hoops driver
+        
     }
     public static void gameEngineer(Scanner cli){
         
@@ -178,9 +341,20 @@ public class Program5 {
         System.out.println("please enter difficulty number");
         System.out.println("(1)Low: hole radius 10ft");
         System.out.println("(2)Medium: hole radius 5ft");
-        System.out.println("(1)High: hole radius 2ft");
+        System.out.println("(3)High: hole radius 2ft");
         setDifficulty = cli.nextInt();
-        if(setDifficulty == 1)
+        if(setDifficulty == 1){
+            rad = 10;
+            return setDifficulty;
+        }else if(setDifficulty == 2){
+            rad = 5;
+            return setDifficulty;
+        }else if(setDifficulty == 3){
+            rad = 2;
+            return setDifficulty;
+        }else{
+            setDifficulty(cli);
+        }
         return setDifficulty;
     }
     /////////////////////////////////////////////////////////

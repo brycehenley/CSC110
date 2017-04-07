@@ -32,8 +32,29 @@ public class Point {
     int x;
     int y;
     
+    public int distance;
+    
     public static void main(String[] args) {
         // TODO code application logic here
+        Point p1 = new Point();
+        Point p2 = new Point();
+        
+        p1.setLocation(0, 0);
+        p2.setLocation(1, 4);
+        
+    }
+    public void setLocation(int newX, int newY){
+        x = newX;
+        y = newY;
+    }
+    public void translate(int dx, int dy){
+        x = x + dx;
+        y = y + dy;
+    }
+    public int distance(Point p1, Point p2){
+        //distance formula
+        distance = ((p2.x - p1.x)*(p2.x - p1.x))-((p2.y - p1.y)*(p2.y - p1.y));
+        return distance;
     }
     
 }

@@ -66,8 +66,8 @@ public class Program5 {
     public static double hole5;
     public static double current1 = 0;
     public static double current2 = 0;
-    public static int stroke1 = 0;
-    public static int stroke2 = 0;
+    public static int stroke1 = 1;
+    public static int stroke2 = 1;
     
     public static void main(String[] args) {
         

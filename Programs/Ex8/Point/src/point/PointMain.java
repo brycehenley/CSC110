@@ -1,7 +1,7 @@
 /*
  * Bryce Henley
  * CSC110AB
- * 04/04/2017
+ * 04/06/2017
  * 
  * The MIT License
  *
@@ -27,31 +27,18 @@
  */
 package point;
 
-import java.lang.*;
+public class PointMain {
+    
+    public static void main(String[] args){
 
-public class Point {
-
-    int x;
-    int y;
-    
-    
-    public void setLocation(int newX, int newY){
-        x = newX;
-        y = newY;
+        Point p1 = new Point();
+        Point p2 = new Point();
+        
+        p1.setLocation(1, 1);
+        p2.setLocation(1, 4);
+        
+        System.out.println("p2.x = " + p2.x + " p2.y = " + p2.y);
+        System.out.println(p1.distance(p1, p2));
+        System.out.println(p2.distanceFromOrigin(p2));
     }
-    public void translate(int dx, int dy){
-        x = x + dx;
-        y = y + dy;
-    }
-    public double distance(Point p1, Point p2){
-        //distance formula
-        double distance = ((p2.x - p1.x)*(p2.x - p1.x))-((p2.y - p1.y)*(p2.y - p1.y));
-        distance = Math.sqrt(distance);
-        return distance;
-    }
-    public double distanceFromOrigin(Point p1){
-        double distanceFromOrigin = Math.sqrt((p1.x - 0)*(p1.x - 0))-((p1.y - 0)*(p1.y - 0));
-        return distanceFromOrigin;
-    }
-    
 }

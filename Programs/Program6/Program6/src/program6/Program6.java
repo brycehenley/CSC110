@@ -31,27 +31,32 @@
  */
 package program6;
 
+import java.io.*;
 import java.util.*;
 
 public class Program6 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner cli = new Scanner(System.in);
         mainMenu(cli);
     }
-    public static void mainMenu(Scanner cli){
+    public static void mainMenu(Scanner cli) throws FileNotFoundException {
         //first menu that prompts the user for data input.
         System.out.print("Welcome to the weather station application.\n Enter number to select option"
                 + "\n (1)input a data file, or"
                 + "\n (2)input data from keyboard"
                 + "\n");
         int input = cli.nextInt();
-        if(input == 1){
-            inputFileData(cli);
-        }else if(input == 2){
-            inputKeyData(cli);
-        }else{
-            mainMenu(cli);
+        switch (input) {
+            case 1:
+                inputFileData(cli);
+                break;
+            case 2:
+                inputKeyData(cli);
+                break;
+            default:
+                mainMenu(cli);
+                break;
         }
         
     }
@@ -66,13 +71,22 @@ public class Program6 {
                 + "(7)  Stop analyzing this collection of data.\n"
                 + "\n");
     }
-    public static void inputFileData(Scanner cli){
+    public static void inputFileData(Scanner cli) throws FileNotFoundException {
         //method to input weather data from file
+        //input file
+        Scanner fileInput = new Scanner(new File("genWeather-1.txt"));
+        //file to arraylist
         
+        
+        //toss to subMenu
+        subMenu(cli);
     }
     public static void inputKeyData(Scanner cli){
         //method to input weather data from keyboard entry
         
+        //input from cli into arraylist
+        //toss to subMenu
+        subMenu(cli);
     }
 
     //calculations

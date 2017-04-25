@@ -60,7 +60,7 @@ public class Program6 {
         }
         
     }
-    public static void subMenu(Scanner cli){
+    public static void subMenu(Scanner cli) throws FileNotFoundException{
         System.out.print("Enter number to select option:\n"
                 + "(1)  Display the input data.\n"
                 + "(2)  Display the record high temperature and the year it was recorded for a given day.\n"
@@ -86,6 +86,7 @@ public class Program6 {
             case 6:
                 break;
             case 7:
+                stopCheck(cli);
                 break;
         }
     }
@@ -99,12 +100,35 @@ public class Program6 {
         //toss to subMenu
         subMenu(cli);
     }
-    public static void inputKeyData(Scanner cli){
+    public static void inputKeyData(Scanner cli) throws FileNotFoundException{
         //method to input weather data from keyboard entry
         
         //input from cli into arraylist
+        
+        //for
+        ArrayList<Double> list = new ArrayList<>();
+        //
+        
         //toss to subMenu
         subMenu(cli);
+    }
+    public static void stopCheck(Scanner cli) throws FileNotFoundException{
+        System.out.println("Please select an option");
+        System.out.println("1: Stop program");
+        System.out.println("2: Enter new data");
+        
+        int input = cli.nextInt();
+        
+        switch (input){
+            case 1:
+                //quit
+                break;
+            case 2:
+                //select new data
+                mainMenu(cli);
+                break;
+        }
+    
     }
 
     //calculations

@@ -70,6 +70,24 @@ public class Program6 {
                 + "(6)  Display a chart summarizing the distribution of the values in one field.\n"
                 + "(7)  Stop analyzing this collection of data.\n"
                 + "\n");
+        
+        int input = cli.nextInt();
+        switch (input) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
     }
     public static void inputFileData(Scanner cli) throws FileNotFoundException {
         //method to input weather data from file

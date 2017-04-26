@@ -102,7 +102,11 @@ public class Program6 {
         //input file
         Scanner fileInput = new Scanner(new File("genWeather-1.txt"));
         //file to arraylist
-        
+        while(fileInput.hasNextDouble()){
+            double input = fileInput.nextDouble();
+            list.add(input);
+            //check for 0!
+        }
         
         //toss to subMenu
         subMenu(cli, list);
@@ -178,7 +182,7 @@ public class Program6 {
                 
             }
             
-            System.out.printf("%-7f%-7.2f%-7.2f%-7.2f%-7.2f \n", list.get(index), list.get(index + 1), list.get(index + 2), list.get(index + 3), list.get(index + 4));
+            System.out.printf("%-10.0f%-10.2f%-10.2f%-10.0f%-10.1f \n", list.get(index), list.get(index + 1), list.get(index + 2), list.get(index + 3), list.get(index + 4));
             
             index = index + 5;
             i = i + 5;

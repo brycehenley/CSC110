@@ -105,16 +105,16 @@ public class Program6 {
         int count = 0;
         int exit = 0;
         while(fileInput.hasNextDouble() && exit == 0){
-            
-                
-            
             double input = fileInput.nextDouble();
-            list.add(input);
             
+            //check for 0
             if (count %5 == 0 && input == 0){
                 exit = 1;
-            
-            }//check for 0!
+            }else{
+                list.add(input);
+                count++; 
+            }
+             
         }
         
         //toss to subMenu
@@ -181,7 +181,7 @@ public class Program6 {
         //headings
         System.out.printf("day\t high\t record\t year\t humidity\t \n");
         
-        while(i <= 50 && index < list.size()){
+        while(i <= 50 && (index < list.size())){
             if(i == 50){
                 System.out.println("Enter any number to continue displaying results or 0 to quit");
                 int input = cli.nextInt();

@@ -102,10 +102,19 @@ public class Program6 {
         //input file
         Scanner fileInput = new Scanner(new File("genWeather-1.txt"));
         //file to arraylist
-        while(fileInput.hasNextDouble()){
+        int count = 0;
+        int exit = 0;
+        while(fileInput.hasNextDouble() && exit == 0){
+            
+                
+            
             double input = fileInput.nextDouble();
             list.add(input);
-            //check for 0!
+            
+            if (count %5 == 0 && input == 0){
+                exit = 1;
+            
+            }//check for 0!
         }
         
         //toss to subMenu

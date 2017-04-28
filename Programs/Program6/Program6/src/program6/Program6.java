@@ -83,6 +83,7 @@ public class Program6 {
                 Display(cli, list); 
                 break;
             case 2:
+                DayOfTheYear(cli, list);
                 break;
             case 3:
                 break;
@@ -201,5 +202,23 @@ public class Program6 {
             
         }
         
+    }
+    public static void DayOfTheYear(Scanner cli, ArrayList<Double> list) throws FileNotFoundException{
+        System.out.println("Enter day:");
+        double day = cli.nextDouble();
+        int index;
+        boolean found = false;
+        
+        if(list.contains(day)){
+            index = list.indexOf(day);
+            if(index %5 == 0){
+                
+            }else{
+                System.out.println("Day not found");
+            }
+        }else{
+            System.out.println("Day not found");
+            subMenu(cli, list);
+        }
     }
 }

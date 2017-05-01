@@ -94,10 +94,13 @@ public class Program6 {
                 HeatIndex(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 4:
+                Option4(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 5:
+                Option5(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 6:
+                Option6(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 7:
                 stopCheck(cli, list1, list2, list3, list4, list5, list6);
@@ -297,5 +300,46 @@ public class Program6 {
         }
         
         subMenu(cli, list1, list2, list3, list4, list5, list6);
+    }
+    public static void Option4(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        //for the selected field, compute and display four results: the average value, the minimum value, the maximum value, and the range (the difference between the minimum and maximum).
+        System.out.println("Enter number to select feild");
+        System.out.println("1: high temp");
+        System.out.println("2: record high temp");
+        System.out.println("3: relative humidity");
+        
+        int input = cli.nextInt();
+        
+        switch(input){
+            case 1:
+                Avg(list2);
+                break;
+            case 2:
+                Avg(list3);
+                break;
+            case 3:
+                Avg(list5);
+                break;
+        }
+        
+        
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
+    }
+    public static void Option5(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
+    }
+    public static void Option6(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
+    }
+    public static double Avg(ArrayList<Double> avglist){
+        double avg = 0;
+        for(int i = 0; i + 1 < avglist.size(); i++){
+            avg = avg + avglist.get(i);
+        }
+        avg = avg / avglist.size();
+        
+        return avg;
     }
 }

@@ -97,6 +97,7 @@ public class Program6 {
                 stopCheck(cli, list);
                 break;
         }
+        subMenu(cli, list);
     }
     public static void inputFileData(Scanner cli, ArrayList<Double> list) throws FileNotFoundException {
         //method to input weather data from file
@@ -213,7 +214,7 @@ public class Program6 {
             index = list.indexOf(day);
             if(index %5 == 0){
                 //Display the record high temperature and the year it was recorded for a given day.
-                System.out.printf("3.2f\n", list.get(index + 2));
+                System.out.printf("record hight temperature: %3.2f, record year: %4.0f\n", list.get(index + 2), list.get(index + 3));
             }else{
                 System.out.println("Day not found");
             }

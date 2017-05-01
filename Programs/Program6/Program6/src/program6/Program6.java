@@ -251,8 +251,20 @@ public class Program6 {
     public static void HeatIndex(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         //HI calc
         int cycle = 0;
-        while(cycle < list1.size()){
+        while(cycle + 1 < list1.size()){
+            double HI;
+            HI = (-42.379 + 2.04901523*list2.get(cycle) + 10.14333127 * list5.get(cycle) - 0.22475541*list2.get(cycle)*list5.get(cycle) - 0.00683783*list2.get(cycle)*list2.get(cycle) - 0.05481717*list5.get(cycle)*list5.get(cycle) + 0.00122874*list2.get(cycle)*list2.get(cycle)*list5.get(cycle) + 0.00085282*list2.get(cycle)*list5.get(cycle)*list5.get(cycle) - 0.00000199*list2.get(cycle)*list2.get(cycle)*list5.get(cycle)*list5.get(cycle)); 
             
+            //adjustement
+            if(list5.get(cycle) < 13.0 && list2.get(cycle) > 80.0 && list2.get(cycle) < 112.0){
+                HI = HI - (((13-list5.get(cycle))/4)*Math.sqrt((17-Math.abs(list2.get(cycle)-95.0))/17));
+            }else if(list5.get(cycle) > 85.0 && list2.get(cycle) > 80.0 && list2.get(cycle) < 87.0){
+                HI = HI + ((list5.get(cycle)-85)/10) * ((87-list2.get(cycle))/5);
+            }else{
+                
+            }
+            list6.add(HI);
+            cycle++;
         }
         
         
@@ -262,7 +274,7 @@ public class Program6 {
         int index = 0;
         
         //headings
-        System.out.printf("day\t high\t humidity\t HeatIndex\n");
+        System.out.printf("day\t high\t humidity\t heat_index\n");
         
         while(i <= 10 && (index + 1 < list1.size())){
             if(i == 10){

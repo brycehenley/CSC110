@@ -200,6 +200,7 @@ public class Program6 {
                 list3.clear();
                 list4.clear();
                 list5.clear();
+                list6.clear();
                 //select new data
                 mainMenu(cli, list1, list2, list3, list4, list5, list6);
                 break;
@@ -312,13 +313,13 @@ public class Program6 {
         
         switch(input){
             case 1:
-                Avg(list2);
+                System.out.printf("Average: \n %5.2f \n Min: \n %5.2f \n Max: \n %5.2f \n Range: \n %5.2f \n", Avg(list2), Min(list2), Max(list2), Range(list2));
                 break;
             case 2:
-                Avg(list3);
+                System.out.printf("Average: \n %5.2f \n Min: \n %5.2f \n Max: \n %5.2f \n Range: \n %5.2f \n", Avg(list3), Min(list3), Max(list3), Range(list3));
                 break;
             case 3:
-                Avg(list5);
+                System.out.printf("Average: \n %5.2f \n Min: \n %5.2f \n Max: \n %5.2f \n Range: \n %5.2f \n", Avg(list5), Min(list5), Max(list5), Range(list5));
                 break;
         }
         
@@ -341,5 +342,51 @@ public class Program6 {
         avg = avg / avglist.size();
         
         return avg;
+    }
+    public static double Min(ArrayList<Double> minlist){
+        double min = minlist.get(0);
+        
+        for(int i = 0; i + 1 < minlist.size(); i++){
+            if(minlist.get(i) < min){
+                min = minlist.get(i);
+            }else{
+                
+            }
+        }
+        return min;
+    }
+    public static double Max(ArrayList<Double> maxlist){
+        double max = maxlist.get(0);
+        for(int i = 0; i + 1 < maxlist.size(); i++){
+            if(maxlist.get(i) > max){
+                max = maxlist.get(i);
+            }else{
+                
+            }
+        }
+        return max;
+    }
+    public static double Range(ArrayList<Double> rangelist){
+        double range = 0;
+        double min = rangelist.get(0);
+        double max = rangelist.get(0);
+        
+        for(int i = 0; i + 1 < rangelist.size(); i++){
+            if(rangelist.get(i) > max){
+                max = rangelist.get(i);
+            }else{
+                
+            }
+        }
+        
+        for(int i = 0; i + 1 < rangelist.size(); i++){
+            if(rangelist.get(i) < min){
+                min = rangelist.get(i);
+            }else{
+                
+            }
+        }
+        range = Math.abs(max-min);
+        return range;
     }
 }

@@ -47,10 +47,11 @@ public class Program6 {
         ArrayList<Double> list3 = new ArrayList<Double>(100);
         ArrayList<Double> list4 = new ArrayList<Double>(100);
         ArrayList<Double> list5 = new ArrayList<Double>(100);
+        ArrayList<Double> list6 = new ArrayList<Double>(100);
         
-        mainMenu(cli, list1, list2, list3, list4, list5);
+        mainMenu(cli, list1, list2, list3, list4, list5, list6);
     }
-    public static void mainMenu(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException {
+    public static void mainMenu(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException {
         //first menu that prompts the user for data input.
         System.out.print("Welcome to the weather station application.\n Enter number to select option"
                 + "\n (1)input a data file, or"
@@ -59,18 +60,18 @@ public class Program6 {
         int input = cli.nextInt();
         switch (input) {
             case 1:
-                inputFileData(cli, list1, list2, list3, list4, list5);
+                inputFileData(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 2:
-                inputKeyData(cli, list1, list2, list3, list4, list5);
+                inputKeyData(cli, list1, list2, list3, list4, list5, list6);
                 break;
             default:
-                mainMenu(cli, list1, list2, list3, list4, list5);
+                mainMenu(cli, list1, list2, list3, list4, list5, list6);
                 break;
         }
         
     }
-    public static void subMenu(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void subMenu(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         System.out.print("Enter number to select option:\n"
                 + "(1)  Display the input data.\n"
                 + "(2)  Display the record high temperature and the year it was recorded for a given day.\n"
@@ -84,13 +85,13 @@ public class Program6 {
         int input = cli.nextInt();
         switch (input) {
             case 1:
-                Display(cli, list1, list2, list3, list4, list5); 
+                Display(cli, list1, list2, list3, list4, list5, list6); 
                 break;
             case 2:
-                DayOfTheYear(cli, list1, list2, list3, list4, list5);
+                DayOfTheYear(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 3:
-                HeatIndex(cli, list1, list2, list3, list4, list5);
+                HeatIndex(cli, list1, list2, list3, list4, list5, list6);
                 break;
             case 4:
                 break;
@@ -99,12 +100,12 @@ public class Program6 {
             case 6:
                 break;
             case 7:
-                stopCheck(cli, list1, list2, list3, list4, list5);
+                stopCheck(cli, list1, list2, list3, list4, list5, list6);
                 break;
         }
         
     }
-    public static void inputFileData(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException {
+    public static void inputFileData(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException {
         //method to input weather data from file
         //input file
         Scanner fileInput = new Scanner(new File("genWeather-1.txt"));
@@ -144,9 +145,9 @@ public class Program6 {
         }
         
         //toss to subMenu
-        subMenu(cli, list1, list2, list3, list4, list5);
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
-    public static void inputKeyData(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void inputKeyData(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         //method to input weather data from keyboard entry
         
         //input from cli into arraylist
@@ -176,9 +177,9 @@ public class Program6 {
         
         
         //toss to subMenu
-        subMenu(cli, list1, list2, list3, list4, list5);
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
-    public static void stopCheck(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void stopCheck(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         System.out.println("Please select an option");
         System.out.println("1: Stop program");
         System.out.println("2: Enter new data");
@@ -197,14 +198,14 @@ public class Program6 {
                 list4.clear();
                 list5.clear();
                 //select new data
-                mainMenu(cli, list1, list2, list3, list4, list5);
+                mainMenu(cli, list1, list2, list3, list4, list5, list6);
                 break;
         }
     
     }
     
     //calculation/worker methods
-    public static void Display(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void Display(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         int i = 0;
         int index = 0;
         
@@ -216,7 +217,7 @@ public class Program6 {
                 System.out.println("Enter any number to continue displaying results or 0 to quit");
                 int input = cli.nextInt();
                 if(input == 0){
-                    subMenu(cli, list1, list2, list3, list4, list5);
+                    subMenu(cli, list1, list2, list3, list4, list5, list6);
                 }else{
                     i = 0;
                 }
@@ -230,9 +231,9 @@ public class Program6 {
             i++;
             
         }
-        subMenu(cli, list1, list2, list3, list4, list5);
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
-    public static void DayOfTheYear(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void DayOfTheYear(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
         System.out.println("Enter day:");
         double day = cli.nextDouble();
         int index;
@@ -243,13 +244,46 @@ public class Program6 {
                 System.out.printf("record hight temperature: %3.2f, record year: %4.0f\n", list3.get(index), list4.get(index));
         }else{
             System.out.println("Day not found");
-            subMenu(cli, list1, list2, list3, list4, list5);
+            subMenu(cli, list1, list2, list3, list4, list5, list6);
         }
-        subMenu(cli, list1, list2, list3, list4, list5);
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
-    public static void HeatIndex(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5) throws FileNotFoundException{
+    public static void HeatIndex(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        //HI calc
+        int cycle = 0;
+        while(cycle < list1.size()){
+            
+        }
         
         
-        subMenu(cli, list1, list2, list3, list4, list5);
+        
+        //Display
+        int i = 0;
+        int index = 0;
+        
+        //headings
+        System.out.printf("day\t high\t humidity\t HeatIndex\n");
+        
+        while(i <= 10 && (index + 1 < list1.size())){
+            if(i == 10){
+                System.out.println("Enter any number to continue displaying results or 0 to quit");
+                int input = cli.nextInt();
+                if(input == 0){
+                    subMenu(cli, list1, list2, list3, list4, list5, list6);
+                }else{
+                    i = 0;
+                }
+            }else{
+                
+            }
+            //day high hum HI
+            System.out.printf("%3.0f\t%5.2f\t%3.1f\t%6.3f \n", list1.get(index), list2.get(index), list5.get(index), list6.get(index));
+            
+            index++;
+            i++;
+            
+        }
+        
+        subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
 }

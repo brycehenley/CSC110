@@ -212,7 +212,8 @@ public class Program6 {
         if(list.contains(day)){
             index = list.indexOf(day);
             if(index %5 == 0){
-                
+                //Display the record high temperature and the year it was recorded for a given day.
+                System.out.printf("3.2f\n", list.get(index + 2));
             }else{
                 System.out.println("Day not found");
             }

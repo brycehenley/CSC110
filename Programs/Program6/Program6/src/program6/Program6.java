@@ -327,11 +327,58 @@ public class Program6 {
         subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
     public static void Option5(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        System.out.println("Enter number to select feild");
+        System.out.println("1: high temp");
+        System.out.println("2: record high temp");
+        System.out.println("3: relative humidity");
+        
+        int input = cli.nextInt();
+        
+        switch(input){
+            case 1:
+                double[] diffrence1 = Diff(list2);
+                System.out.printf("diffrence: \n %5.2f \n day1: \n %3.0f \n day2: \n %3.0f \n", diffrence1[0], list1.get((int)diffrence1[1]), list1.get((int)diffrence1[2]));
+                break;
+            case 2:
+                double[] diffrence2 = Diff(list3);
+                System.out.printf("diffrence: \n %5.2f \n day1: \n %3.0f \n day2: \n %3.0f \n", diffrence2[0], diffrence2[1], diffrence2[2]);
+                break;
+            case 3:
+                double[] diffrence3 = Diff(list5);
+                System.out.printf("diffrence: \n %5.2f \n day1: \n %3.0f \n day2: \n %3.0f \n", diffrence3[0], diffrence3[1], diffrence3[2]);
+                break;
+        }
         
         subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
     public static void Option6(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
+        //
+        System.out.println("Enter number to select feild");
+        System.out.println("1: high temp");
+        System.out.println("2: record high temp");
+        System.out.println("3: relative humidity");
         
+        int input = cli.nextInt();
+        
+        switch(input){
+            case 1:
+                System.out.println("Enter number to select output format");
+                System.out.println("1: table");
+                System.out.println("2: graph");
+                int format = cli.nextInt();
+                
+                if(format == 1){
+                    
+                }else{
+                    
+                }
+                
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
         subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
     public static double Avg(ArrayList<Double> avglist){
@@ -388,5 +435,26 @@ public class Program6 {
         }
         range = Math.abs(max-min);
         return range;
+    }
+    public static double[] Diff(ArrayList<Double> difflist){
+        double[] diff;
+        //{diffrence, index1, index2}
+        diff = new double[3];
+        double diffmax = Math.abs(difflist.get(0) - difflist.get(1));
+
+        for(int i = 0; i + 2 < difflist.size(); i++){
+            
+            if((Math.abs(difflist.get(i+1)-difflist.get(i))) > diffmax){
+                diffmax = (Math.abs(difflist.get(i+1)-difflist.get(i)));
+                
+                diff[0] = diffmax;
+                diff[1] = i;
+                diff[2] = i + 1;
+            }else{
+                
+            }
+        }
+        
+        return diff;
     }
 }

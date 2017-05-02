@@ -352,7 +352,10 @@ public class Program6 {
         subMenu(cli, list1, list2, list3, list4, list5, list6);
     }
     public static void Option6(Scanner cli, ArrayList<Double> list1, ArrayList<Double> list2, ArrayList<Double> list3, ArrayList<Double> list4, ArrayList<Double> list5, ArrayList<Double> list6) throws FileNotFoundException{
-        //
+        //decade arraylist
+        ArrayList<String> decade = new ArrayList<String>(Arrays.asList("0","10","20","30","40","50","60","70","80","90","100+","100+"));
+        
+        
         System.out.println("Enter number to select feild");
         System.out.println("1: high temp");
         System.out.println("2: record high temp");
@@ -362,21 +365,86 @@ public class Program6 {
         
         switch(input){
             case 1:
+                //return array
+                int[] dec1;
+                dec1 = Decade(list2).clone();
+                
+                
                 System.out.println("Enter number to select output format");
                 System.out.println("1: table");
                 System.out.println("2: graph");
                 int format = cli.nextInt();
                 
                 if(format == 1){
-                    
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t%d\n", decade.get(i), dec1[i]);
+                    }
                 }else{
-                    
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t", decade.get(i));
+                        for(int t = 0; t < dec1[i]; t++){
+                            System.out.print("*");
+                        }
+                        System.out.print("\n");
+                    }
                 }
                 
                 break;
             case 2:
+                //return array
+                int[] dec2;
+                dec2 = Decade(list3).clone();
+                
+                
+                System.out.println("Enter number to select output format");
+                System.out.println("1: table");
+                System.out.println("2: graph");
+                int format2 = cli.nextInt();
+                
+                if(format2 == 1){
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t%d\n", decade.get(i), dec2[i]);
+                    }
+                }else{
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t", decade.get(i));
+                        for(int t = 0; t < dec2[i]; t++){
+                            System.out.print("*");
+                        }
+                        System.out.print("\n");
+                    }
+                }
                 break;
             case 3:
+                //return array
+                int[] dec3;
+                dec3 = Decade(list2).clone();
+                
+                
+                System.out.println("Enter number to select output format");
+                System.out.println("1: table");
+                System.out.println("2: graph");
+                int format3 = cli.nextInt();
+                
+                if(format3 == 1){
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t%d\n", decade.get(i), dec3[i]);
+                    }
+                }else{
+                    System.out.print("decade     :     count\n");
+                    for(int i = 0; i + 1 < decade.size(); i++){
+                        System.out.printf("%s\t", decade.get(i));
+                        for(int t = 0; t < dec3[i]; t++){
+                            System.out.print("*");
+                        }
+                        System.out.print("\n");
+                    }
+                }       
                 break;
         }
         subMenu(cli, list1, list2, list3, list4, list5, list6);
@@ -456,5 +524,53 @@ public class Program6 {
         }
         
         return diff;
+    }
+    public static int[] Decade(ArrayList<Double> decadelist){
+        int[] decadevalue;
+        decadevalue = new int[11];
+        
+        decadevalue[0] = 0;
+        decadevalue[1] = 0;
+        decadevalue[2] = 0;
+        decadevalue[3] = 0;
+        decadevalue[4] = 0;
+        decadevalue[5] = 0;
+        decadevalue[6] = 0;
+        decadevalue[7] = 0;
+        decadevalue[8] = 0;
+        decadevalue[9] = 0;
+        decadevalue[10] = 0;
+        
+        for(int i = 0; i + 1 < decadelist.size(); i++){
+            int dl = (int)Math.round(decadelist.get(i));
+            
+            if (dl < 10){
+                decadevalue[0]++;
+            }else if (dl >= 10 && dl <20){
+                decadevalue[1]++;
+            }else if (dl >= 20 && dl<30){
+                decadevalue[2]++;
+            }else if (dl >= 30 && dl<40){
+                decadevalue[3]++;
+            }else if (dl >= 40 && dl<50){
+                decadevalue[4]++;
+            }else if (dl >= 50 && dl<60){
+                decadevalue[5]++;
+            }else if (dl >= 60 && dl<70){
+                decadevalue[6]++;
+            }else if (dl >= 70 && dl<80){
+                decadevalue[7]++;
+            }else if (dl >= 80 && dl<90){
+                decadevalue[8]++;
+            }else if (dl >= 90 && dl<100){
+                decadevalue[9]++;
+            }else{
+                decadevalue[10]++;
+            }
+                
+        }
+        
+        
+        return decadevalue;
     }
 }
